@@ -1,0 +1,17 @@
+---
+description: After code changes, commit, push, and reload Safari preview
+alwaysApply: true
+---
+
+# Ship workflow (this repo)
+
+When you finish a task that changes application source, tests, or project config the user cares about:
+
+1. **Stage** — `git add` only what belongs in this commit (respect `.gitignore`; never add `node_modules/` or `dist/`).
+2. **Commit** — Use a clear message: short imperative subject; body only when it adds real context.
+3. **Push** — `git push` to `origin` on the **current branch** (use `git push -u origin HEAD` if upstream is missing). If push fails, say what failed and how to fix it; do not claim success.
+4. **Reload** — So the user sees updates in Safari:
+   - If the Vite dev server is expected to be running, run: `open -a Safari http://localhost:5173/`
+   - If the server may not be running, start it in the background with `npm run dev` first, then open that URL once the server is ready.
+
+Skip this whole sequence when the user explicitly asked for **local-only** or **no-git** work, or when there is nothing new to commit.
