@@ -14,6 +14,8 @@
   --accent-light: #e8eef4;
   --border: #e0ddd8;
   --card-bg: #ffffff;
+  --nav-bg: rgba(250, 249, 247, 0.85);
+  --mobile-menu-bg: rgba(250, 249, 247, 0.95);
   --radius: 12px;
   --radius-sm: 8px;
   --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
@@ -21,6 +23,21 @@
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: 'Newsreader', Georgia, serif;
+}
+
+[data-theme="dark"] {
+  --bg: #141414;
+  --bg-alt: #1c1c1c;
+  --text: #ececec;
+  --text-muted: #9a9a9a;
+  --accent: #8ab4e8;
+  --accent-light: #1e2d40;
+  --border: #383838;
+  --card-bg: #222222;
+  --nav-bg: rgba(20, 20, 20, 0.88);
+  --mobile-menu-bg: rgba(20, 20, 20, 0.96);
+  --shadow: 0 1px 3px rgba(0,0,0,0.45), 0 4px 12px rgba(0,0,0,0.28);
+  --shadow-hover: 0 2px 8px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.32);
 }
 
 html {
@@ -54,11 +71,11 @@ a {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(250, 249, 247, 0.85);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
-  transition: border-color var(--transition);
+  transition: border-color var(--transition), background var(--transition);
 }
 
 .nav.scrolled {
@@ -73,6 +90,46 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+}
+
+.theme-toggle {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 3px;
+  gap: 2px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.theme-toggle-btn {
+  appearance: none;
+  margin: 0;
+  padding: 5px 9px;
+  border: none;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: transparent;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+.theme-toggle-btn:hover {
+  color: var(--text);
+}
+
+.theme-toggle-btn[aria-pressed="true"] {
+  color: var(--text);
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
 }
 
 .nav-logo {
@@ -153,7 +210,7 @@ a {
   top: 64px;
   left: 0;
   right: 0;
-  background: rgba(250, 249, 247, 0.95);
+  background: var(--mobile-menu-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -161,6 +218,7 @@ a {
   flex-direction: column;
   padding: 16px 24px 24px;
   gap: 16px;
+  transition: background var(--transition);
 }
 
 .mobile-menu.open {
@@ -1180,6 +1238,58 @@ a {
   transform: translateY(0);
 }
 
+/* ── Dark mode: fixed palette components ── */
+[data-theme="dark"] .tl-label {
+  color: #777;
+}
+
+[data-theme="dark"] .tl-label.active {
+  color: var(--accent);
+}
+
+[data-theme="dark"] .tl-track {
+  background: #444;
+}
+
+[data-theme="dark"] .tl-separator {
+  background: #555;
+}
+
+[data-theme="dark"] .tl-stop {
+  background: #444;
+  border-color: var(--card-bg);
+}
+
+[data-theme="dark"] .tl-stop.past {
+  background: #6b8fb8;
+  box-shadow: 0 0 0 1px rgba(138, 180, 232, 0.35);
+}
+
+[data-theme="dark"] .tl-stop.active {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(138, 180, 232, 0.25);
+}
+
+[data-theme="dark"] .replay-btn {
+  background: rgba(45, 45, 45, 0.92);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--accent);
+}
+
+[data-theme="dark"] .replay-btn:hover {
+  background: #333;
+  color: #c5dafb;
+}
+
+[data-theme="dark"] .map-tooltip-badge.visited {
+  background: #1e3d2e;
+  color: #9dd4b0;
+}
+
+[data-theme="dark"] .book-modal-overlay {
+  background: rgba(0, 0, 0, 0.65);
+}
+
 /* ── Responsive ── */
 @media (max-width: 640px) {
   .nav-links {
@@ -1188,6 +1298,11 @@ a {
 
   .nav-toggle {
     display: block;
+  }
+
+  .theme-toggle-btn {
+    padding: 5px 7px;
+    font-size: 0.62rem;
   }
 
   .section {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 const links = [
   { href: '#books', label: 'Books' },
@@ -39,6 +40,7 @@ export default function Nav() {
               <a key={l.href} href={l.href} onClick={(e) => scrollTo(e, l.href)}>{l.label}</a>
             ))}
           </div>
+          <ThemeToggle />
           <button
             className={`nav-toggle${menuOpen ? ' active' : ''}`}
             aria-label="Menu"

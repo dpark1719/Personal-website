@@ -1,6 +1,19 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      (function () {
+        try {
+          var k = 'dp-theme-preference';
+          var p = localStorage.getItem(k);
+          var sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = p === 'dark' || (p !== 'light' && sysDark);
+          var root = document.documentElement;
+          root.dataset.theme = dark ? 'dark' : 'light';
+          root.style.colorScheme = dark ? 'dark' : 'light';
+        } catch (e) {}
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>David Park — Personal</title>

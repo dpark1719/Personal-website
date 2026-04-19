@@ -104,6 +104,8 @@ const FLYTHROUGH: Waypoint[] = [
       image: `${US}/photo-1496144300411-8dd31ce145ba?w=640&q=80&auto=format&fit=crop` } },
 ];
 
+// Shared with Experiences for the timeline UI.
+// eslint-disable-next-line react-refresh/only-export-components
 export const TIMELINE_STOPS = [
   { wpIndex: 1, city: 'LA' },
   { wpIndex: 4, city: 'Tokyo' },
