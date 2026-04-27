@@ -1,8 +1,16 @@
 {
-  "name": "temp-react",
+  "name": "personal-website",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dpark1719/Personal-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dpark1719/Personal-website/issues"
+  },
+  "homepage": "https://github.com/dpark1719/Personal-website#readme",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
